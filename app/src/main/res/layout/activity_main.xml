@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.scut.school_days.MainActivity">
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/display_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="日程"
+        android:layout_marginLeft="10dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display3"
+        android:layout_below="@id/calendar"/>
+
+    <ListView
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listview"
+        android:layout_below="@id/display_textview"></ListView>
+
+
+    <Button
+        android:id="@+id/add_but"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/add_icon"/>
+
+    <Button
+        android:id="@+id/today"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@id/add_but"
+        android:layout_marginRight="68dp"
+        android:layout_marginBottom="15dp"
+        android:text="今"
+        android:textSize="18dp"
+        android:background="@drawable/but_shape"/>
+
+
+</RelativeLayout>
