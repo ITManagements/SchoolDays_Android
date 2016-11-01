@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:id="@+id/activity_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,23 +12,27 @@
     tools:context="com.example.scut.school_days.DetailActivity">
 
     <EditText
-        android:id="@+id/detail_title"
+        android:id="@+id/activity_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"/>
-
-    <EditText
-        android:id="@+id/detail_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/detail_title"
         android:textSize="20dp"/>
 
     <Button
-        android:id="@+id/submit_but"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/detail_content"
-        android:text="confirm"/>
+        android:textSize="20dp"
+        android:gravity="left"
+        android:background="#00000000"
+        android:text="pick time"
+        android:id="@+id/pick_time"/>
 
-</RelativeLayout>
+    <!--<Switch-->
+        <!--android:checked="true"-->
+        <!--android:text="@string/notify_or_not"-->
+        <!--android:textSize="20dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/notify_or_not" />-->
+
+
+</LinearLayout>

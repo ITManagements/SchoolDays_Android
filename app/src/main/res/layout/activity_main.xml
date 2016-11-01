@@ -11,23 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <TextView
-        android:id="@+id/display_textview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="日程"
-        android:layout_marginLeft="10dp"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display3"
-        android:layout_below="@id/calendar"/>
 
     <ListView
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listview"
-        android:layout_below="@id/display_textview"></ListView>
-
+        android:layout_below="@id/calendar"></ListView>
 
     <Button
         android:id="@+id/add_but"

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="同步"
+        android:id="@+id/sync" />
+    <item android:title="从云端恢复"
+        android:id="@+id/restore" />
+    <item android:title="跳转到指定日期"
+        android:id="@+id/jump" />
+    <item android:title="安排这一天"
+        android:id="@+id/arrange" />
+    <item android:title="设置"
+        android:id="@+id/settings" />
+    <item android:title="登陆"
+        android:id="@+id/log" />
+</menu>

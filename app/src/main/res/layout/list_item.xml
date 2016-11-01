@@ -5,17 +5,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp"
-    android:layout_margin="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="5dp"
     tools:context="com.example.scut.school_days.MainActivity">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/acitvity_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="20dp"/>
 
     <TextView
-        android:id="@+id/content"
+        android:id="@+id/activity_start_time"
+        android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="15dp"/>
