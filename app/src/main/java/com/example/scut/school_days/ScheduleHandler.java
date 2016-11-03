@@ -40,11 +40,24 @@ public class ScheduleHandler {
     }
 
     public List<Map<String,Object>> loadScheduleOnDay(){
+        // TODO: 2016/11/3 load the data from storage 
         return listitem;
     }
 
     public List<Map<String,Object>> loadScheduleOnDay(CalendarDay selectedDay){
-        return listitem;
+        int d = selectedDay.getDay();
+        int m = selectedDay.getMonth();
+        int y = selectedDay.getYear();
+        if(d ==day && m == month && y == year)
+            return listitem;
+        else{
+            year = y;
+            month = m;
+            day = d;
+            listitem.clear();
+            // TODO: 2016/11/3  load the data from storage 
+            return listitem;
+        }
     }
 
     public Map<String,Object> getSchedule(int position){
@@ -53,23 +66,28 @@ public class ScheduleHandler {
 
     public void addSchedule(String name,int hour,int minute){
         listitem.add(generate_item(name,hour,minute));
+        // TODO: 2016/11/3 write the schedule item to storage 
     }
 
     public Map<String,Object> popSchedule(int position){
+        // TODO: 2016/11/3 delete the item from storage 
         return listitem.remove(position);
     }
 
     public void deleteSchedule(int position){
+        // TODO: 2016/11/3 delete the item from storage 
         listitem.remove(position);
     }
 
     public void deleteSchedule(){
+        // TODO: 2016/11/3 delete the item from storage 
         listitem.remove(ScheduleHandler.choose_item_position);
     }
 
     // where is the old one ???
     public void updateSchedule(int position,String name,int hour,int minute){
         listitem.set(position,generate_item(name,hour,minute));
+        // TODO: 2016/11/3 update the item detail to storage 
     }
 
     private Map<String,Object> generate_item(String name,int hour,int minute){
