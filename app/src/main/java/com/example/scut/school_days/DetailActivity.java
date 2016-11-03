@@ -25,13 +25,6 @@ public class DetailActivity extends AppCompatActivity {
     private EditText activity_content_edittext;
     private Button pick_time_btn;
 
-    final String activity_name = "activity_name";
-    final String activity_start_time = "strat_time";
-    final String activity_start_time_hour = "hour";
-    final String activity_start_time_minute = "minute";
-    final String position_str = "pos";
-
-//    private String time;
     private int pick_hour;
     private int pick_minute;
 
@@ -64,9 +57,9 @@ public class DetailActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
 
         if(bundle!=null) {
-            pick_hour = bundle.getInt(activity_start_time_hour);
-            pick_minute = bundle.getInt(activity_start_time_minute);
-            activity_content_edittext.setText(bundle.getString(activity_name));
+            pick_hour = bundle.getInt(KEY.SCHEDULE_START_HOUR);
+            pick_minute = bundle.getInt(KEY.SCHEDULE_START_MINUTE);
+            activity_content_edittext.setText(bundle.getString(KEY.SCHEDULE_NAME));
             pick_time_btn.setText(Format.formatRemindTitle(pick_hour,pick_minute));
 
         }
@@ -83,9 +76,9 @@ public class DetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.confirm:
-                intent.putExtra(activity_start_time_hour,pick_hour);
-                intent.putExtra(activity_start_time_minute,pick_minute);
-                intent.putExtra(activity_name, activity_content_edittext.getText().toString());
+                intent.putExtra(KEY.SCHEDULE_START_HOUR,pick_hour);
+                intent.putExtra(KEY.SCHEDULE_START_MINUTE,pick_minute);
+                intent.putExtra(KEY.SCHEDULE_NAME, activity_content_edittext.getText().toString());
                 setResult(RESULT_OK, intent);
                 finish();
         }
