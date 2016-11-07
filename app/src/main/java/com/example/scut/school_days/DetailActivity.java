@@ -22,10 +22,11 @@ public class DetailActivity extends AppCompatActivity {
     private EditText activity_content_edittext;
     private Button pick_time_btn;
 
-    private int hour;
-    private int minute;
-    private String title;
-    private String content;
+//    private int hour;
+//    private int minute;
+//    private String title;
+//    private String content;
+    private Schedule schedule;
     private int position;
 
     private Context context;
@@ -45,8 +46,8 @@ public class DetailActivity extends AppCompatActivity {
                 new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        hour = hourOfDay;
-                        DetailActivity.this.minute = minute;
+                        schedule.hour = hourOfDay;
+                        schedule.minute = minute;
                         pick_time_btn.setText(Format.formatRemindTitle(hourOfDay,minute));
                     }
                 }, new Date().getHours(),new Date().getMinutes(),true).show();
@@ -63,7 +64,15 @@ public class DetailActivity extends AppCompatActivity {
 //            activity_content_edittext.setText(bundle.getString(KEY.SCHEDULE_NAME));
 //            pick_time_btn.setText(Format.formatRemindTitle(hour, minute));
             position = bundle.getInt(KEY.SCHEDULE_POSITION);
+            schedule = ScheduleHandler.getInstance().getSchedule(position);
+
             displaySchedule(position);
+        }
+        else{
+            int year = ScheduleHandler.getInstance().year;
+            int month = ScheduleHandler.getInstance().month;
+            int day = ScheduleHandler.getInstance().day;
+            schedule = new Schedule(year,month,day,0,0,"","");
         }
 
     }
@@ -78,10 +87,11 @@ public class DetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.confirm:
+                schedule.title = activity_content_edittext.getText().toString();
                 if(position>=0)
-                    ScheduleHandler.getInstance().updateSchedule(position,generateSchedule());
+                    ScheduleHandler.getInstance().updateSchedule(position, schedule);
                 else
-                    ScheduleHandler.getInstance().addSchedule(generateSchedule());
+                    ScheduleHandler.getInstance().addSchedule(schedule);
 //                intent.putExtra(KEY.SCHEDULE_START_HOUR, hour);
 //                intent.putExtra(KEY.SCHEDULE_START_MINUTE, minute);
 //                intent.putExtra(KEY.SCHEDULE_NAME, activity_content_edittext.getText().toString());
@@ -94,13 +104,12 @@ public class DetailActivity extends AppCompatActivity {
     private void displaySchedule(int position){
         Schedule schedule = ScheduleHandler.getInstance().getSchedule(position);
         // TODO: 2016/11/7 set the coresponding text to the widget
+        activity_content_edittext.setText(schedule.title);
     }
 
-    private Schedule generateSchedule(){
-        int year = ScheduleHandler.getInstance().year;
-        int month = ScheduleHandler.getInstance().month;
-        int day = ScheduleHandler.getInstance().day;
-        return new Schedule(year,month,day,hour,minute,title,content);
-    }
+//    private Schedule generateSchedule(){
+//
+//        return schedule;
+//    }
 
 }
