@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         today=(Button) findViewById(R.id.today);
         today.setOnClickListener(this);
 
-        schedulerhandler = new ScheduleHandler(calendarView.getSelectedDate());
+        schedulerhandler = ScheduleHandler.getInstance(calendarView.getSelectedDate());
         adapter = new SimpleAdapter(this,schedulerhandler.loadScheduleOnDay(),R.layout.list_item,
                 new String[]{KEY.SCHEDULE_NAME,KEY.SCHEDULE_TIME_DESCRIPTION},new int[]{R.id.acitvity_name,R.id.activity_start_time});
         listView = (ListView) findViewById(R.id.listview);
@@ -80,16 +80,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Map<String,Object> map = schedulerhandler.getSchedule(position);
+//                Map<String,Object> map = schedulerhandler.getSchedule(position);
                 Intent intent = new Intent(getApplicationContext(),DetailActivity.class);
-                intent.putExtra(KEY.SCHEDULE_NAME, (String) map.get(KEY.SCHEDULE_NAME) );
-                intent.putExtra(KEY.SCHEDULE_START_HOUR, (Integer) map.get(KEY.SCHEDULE_START_HOUR));
-                intent.putExtra(KEY.SCHEDULE_START_MINUTE,(Integer) map.get(KEY.SCHEDULE_START_MINUTE));
+//                intent.putExtra(KEY.SCHEDULE_NAME, (String) map.get(KEY.SCHEDULE_NAME) );
+//                intent.putExtra(KEY.SCHEDULE_START_HOUR, (Integer) map.get(KEY.SCHEDULE_START_HOUR));
+//                intent.putExtra(KEY.SCHEDULE_START_MINUTE,(Integer) map.get(KEY.SCHEDULE_START_MINUTE));
                 intent.putExtra(KEY.SCHEDULE_POSITION,position);
                 startActivityForResult(intent,0);
             }
         });
-
     }
 
 
@@ -154,17 +153,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==RESULT_OK){
-            Bundle bundle = data.getExtras();
-            switch (requestCode){
-                case 0:
-                    schedulerhandler.updateSchedule(bundle.getInt(KEY.SCHEDULE_POSITION),bundle.getString(KEY.SCHEDULE_NAME),bundle.getInt(KEY.SCHEDULE_START_HOUR),bundle.getInt(KEY.SCHEDULE_START_MINUTE));
+//            Bundle bundle = data.getExtras();
+//            switch (requestCode){
+//                case 0:
+////                    schedulerhandler.updateSchedule(bundle.getInt(KEY.SCHEDULE_POSITION),bundle.getString(KEY.SCHEDULE_NAME),bundle.getInt(KEY.SCHEDULE_START_HOUR),bundle.getInt(KEY.SCHEDULE_START_MINUTE));
+//                    adapter.notifyDataSetChanged();
+//                    break;
+//                case 1:
+//                    schedulerhandler.addSchedule(bundle.getString(KEY.SCHEDULE_NAME), bundle.getInt(KEY.SCHEDULE_START_HOUR),bundle.getInt(KEY.SCHEDULE_START_MINUTE));
                     adapter.notifyDataSetChanged();
-                    break;
-                case 1:
-                    schedulerhandler.addSchedule(bundle.getString(KEY.SCHEDULE_NAME), bundle.getInt(KEY.SCHEDULE_START_HOUR),bundle.getInt(KEY.SCHEDULE_START_MINUTE));
-                    adapter.notifyDataSetChanged();
-                    break;
-            }
+//                    break;
+//            }
         }
     }
 

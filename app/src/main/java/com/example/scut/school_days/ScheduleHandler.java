@@ -13,29 +13,47 @@ import java.util.Map;
 
 public class ScheduleHandler {
     private List<Map<String,Object>> listitem;
-    private int year;
-    private int month;
-    private int day;
+    public int year;
+    public int month;
+    public int day;
+    private List scheduleList;
+    private static ScheduleHandler scheduleHandler;
 
     public static int choose_item_position;
 
-    public ScheduleHandler(CalendarDay selectedDay){
-//        loadScheduleOnDay(selectedDay.getYear(),selectedDay.getMonth(),selectedDay.getDay());
+    public static ScheduleHandler getInstance(){
+        return scheduleHandler;
+    }
+
+    public static ScheduleHandler getInstance(CalendarDay selectedDay){
+        scheduleHandler = new ScheduleHandler(selectedDay);
+        return scheduleHandler;
+    }
+
+    public static ScheduleHandler getInstance(int year,int month,int day){
+        scheduleHandler = new ScheduleHandler(year, month, day);
+        return scheduleHandler;
+    }
+
+    private ScheduleHandler(CalendarDay selectedDay){
         year = selectedDay.getYear();
         month = selectedDay.getMonth();
         day = selectedDay.getDay();
         listitem=new ArrayList<Map<String, Object>>();
+        scheduleList = new ArrayList<Schedule>();
     }
 
-    public ScheduleHandler(int year,int month,int day){
+    private ScheduleHandler(int year,int month,int day){
 //        loadScheduleOnDay(year,month,day);
         this.year = year;
         this.month = month;
         this.day = day;
         listitem=new ArrayList<Map<String, Object>>();
+        scheduleList = new ArrayList<Schedule>();
     }
 
     public List<Map<String,Object>> loadScheduleOnDay(int year,int month,int day){
+        // TODO: 2016/11/3 load the data from storage
         return listitem;
     }
 
@@ -55,13 +73,18 @@ public class ScheduleHandler {
             month = m;
             day = d;
             listitem.clear();
+            scheduleList.clear();
             // TODO: 2016/11/3  load the data from storage 
             return listitem;
         }
     }
 
-    public Map<String,Object> getSchedule(int position){
+    public Map<String,Object> getMapFromSchedule(int position){
         return listitem.get(position);
+    }
+
+    public Schedule getSchedule(int position){
+        return (Schedule) scheduleList.get(position);
     }
 
     public void addSchedule(String name,int hour,int minute){
@@ -69,23 +92,35 @@ public class ScheduleHandler {
         // TODO: 2016/11/3 write the schedule item to storage 
     }
 
+    public void addSchedule(Schedule schedule){
+        scheduleList.add(schedule);
+        addSchedule(schedule.title,schedule.hour,schedule.minute);
+    }
+
     public Map<String,Object> popSchedule(int position){
-        // TODO: 2016/11/3 delete the item from storage 
+        // TODO: 2016/11/3 delete the item from storage
+        scheduleList.remove(position);
         return listitem.remove(position);
     }
 
     public void deleteSchedule(int position){
-        // TODO: 2016/11/3 delete the item from storage 
+        // TODO: 2016/11/3 delete the item from storage
+        scheduleList.remove(position);
         listitem.remove(position);
     }
 
     public void deleteSchedule(){
-        // TODO: 2016/11/3 delete the item from storage 
+        // TODO: 2016/11/3 delete the item from storage
+        scheduleList.remove(ScheduleHandler.choose_item_position);
         listitem.remove(ScheduleHandler.choose_item_position);
     }
 
     // where is the old one ???
-    public void updateSchedule(int position,String name,int hour,int minute){
+    public void updateSchedule(int position,Schedule schedule){
+        scheduleList.set(position,schedule);
+        String name = schedule.title;
+        int hour = schedule.hour;
+        int minute = schedule.minute;
         listitem.set(position,generate_item(name,hour,minute));
         // TODO: 2016/11/3 update the item detail to storage 
     }

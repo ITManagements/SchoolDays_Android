@@ -11,7 +11,7 @@ public class Format {
         StringBuilder sb = new StringBuilder();
         sb.append(year);
         sb.append("年");
-        sb.append(month);
+        sb.append(month+1);
         sb.append("月");
         return sb.toString();
     }
@@ -22,7 +22,7 @@ public class Format {
         StringBuilder sb = new StringBuilder();
         sb.append(year);
         sb.append("年");
-        sb.append(month);
+        sb.append(month+1);
         sb.append("月");
         return sb.toString();
     }
