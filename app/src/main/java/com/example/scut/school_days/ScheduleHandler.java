@@ -79,22 +79,22 @@ public class ScheduleHandler {
         }
     }
 
-    public Map<String,Object> getMapFromSchedule(int position){
-        return listitem.get(position);
-    }
+//    public Map<String,Object> getMapFromSchedule(int position){
+//        return listitem.get(position);
+//    }
 
     public Schedule getSchedule(int position){
         return (Schedule) scheduleList.get(position);
     }
 
-    public void addSchedule(String name,int hour,int minute){
+    public void addMapSchedule(String name,int hour,int minute){
         listitem.add(generate_item(name,hour,minute));
         // TODO: 2016/11/3 write the schedule item to storage 
     }
 
     public void addSchedule(Schedule schedule){
         scheduleList.add(schedule);
-        addSchedule(schedule.title,schedule.hour,schedule.minute);
+        addMapSchedule(schedule.title,schedule.hour,schedule.minute);
     }
 
     public Map<String,Object> popSchedule(int position){
